@@ -11,7 +11,7 @@ const Movies = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/shows"); // Assuming this is how you fetch data
+        const response = await axios.get("/shows");
         if (response.data) {
           setData(response.data);
         } else {
@@ -35,9 +35,9 @@ const Movies = () => {
         {paginatedData.map((movie) => (
           <Link key={movie.id} to={`/single-movie/${movie.id}`}>
             <CardItem
-              image={movie.image?.original} // Optional chaining to handle potential null values
+              image={movie.image?.original} 
               title={movie.name}
-              premiered={movie.premiered?.split("-")[0]} // Optional chaining
+              premiered={movie.premiered?.split("-")[0]} 
               lang={movie.language}
             />
           </Link>

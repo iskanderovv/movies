@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import axios from "../../api";
 import parse from 'html-react-parser';
 
+const placeholderImage = 'https://placehold.co/300x400';
+
+
 const SingleMovie = () => {
   const { id } = useParams();
-  const [userData, setUserData] = useState({}); // Initialize as an empty object
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +23,6 @@ const SingleMovie = () => {
     fetchData();
   }, [id]);
 
-  // Handle empty summary gracefully
   const summaryContent = userData.summary ? parse(userData.summary) : '';
 
   return (
@@ -29,7 +31,14 @@ const SingleMovie = () => {
         {userData && (
           <div className="flex lg:flex md:flex sm:block xs:block gap-12 text-white">
             {userData.image && (
-              <img src={userData.image?.original} width={300} alt={userData.name} />
+              <img
+                src={userData.image.original || placeholderImage}
+                width={300}
+                alt={userData.name}
+                onError={(e) => {
+                  e.target.src = placeholderImage;
+                }}
+              />
             )}
             <div className="mt-12 sm:mt-12 xs:mt-12">
               <h4 className="text-2xl font-bold mb-4">{userData.name}:</h4>
