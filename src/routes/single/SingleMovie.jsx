@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "../../api";
 import parse from 'html-react-parser';
+import axiosBase from "../../api";
 
 const placeholderImage = 'https://placehold.co/300x400';
 
@@ -13,7 +13,7 @@ const SingleMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/shows/${id}`);
+        const response = await axiosBase.get(`/shows/${id}`);
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

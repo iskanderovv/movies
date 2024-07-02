@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardItem from "../users-item/usersItem";
-import axios from "../../api";
+import axiosBase from "../../api";
 import { Link } from "react-router-dom";
 
 const Movies = () => {
@@ -11,7 +11,7 @@ const Movies = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/shows");
+        const response = await axiosBase.get("/shows");
         if (response.data) {
           setData(response.data);
         } else {
