@@ -1,5 +1,3 @@
-import React from 'react'
-
 const CardItem = ({image, title, premiered, lang}) => {
   const truncTitle = (text, num) => {
     return text.length  < num ? text : text.slice(0, num) + '...'
